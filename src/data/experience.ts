@@ -1,5 +1,5 @@
 // src/data/experience.ts
-import { Experience } from '../types';
+import { Experience } from './types';
 
 export const experience: Experience[] = [
     {

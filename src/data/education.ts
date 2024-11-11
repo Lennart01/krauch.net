@@ -1,5 +1,5 @@
 // src/data/education.ts
-import { Education } from '../types';
+import { Education } from './types';
 
 export const education: Education[] = [
     {

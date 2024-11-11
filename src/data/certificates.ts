@@ -1,5 +1,5 @@
 // src/data/certificates.ts
-import { Certificate } from '../types';
+import { Certificate } from './types';
 
 export const certificates: Certificate[] = [
     {

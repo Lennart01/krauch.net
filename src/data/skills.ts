@@ -1,5 +1,5 @@
 // src/data/skills.ts
-import { Skill } from '../types';
+import { Skill } from './types';
 
 export const skills: Skill[] = [
 

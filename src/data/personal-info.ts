@@ -1,5 +1,5 @@
 // src/data/personal-info.ts
-import { PersonalInfo } from '../types';
+import { PersonalInfo } from "./types"
 
 export const personalInfo: PersonalInfo = {
     name: "Lennart Krauch",
