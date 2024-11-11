@@ -3,7 +3,7 @@ import {
     MonitorDot, Server
 
 } from 'lucide-react';
-import { Skill } from '@/types';
+import { Skill } from '../../data/types';
 
 const icons = {
     Box,
