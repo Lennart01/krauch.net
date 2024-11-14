@@ -1,7 +1,7 @@
 // src/app/page.tsx
 import { Download, Mail } from 'lucide-react';
 import { Button } from '@/components/shared/Button';
-import { SkillCard } from '@/components/skills/SkillCard';
+import { SkillsSection } from '@/components/skills/SkillsSection';
 import { ExperienceTimeline } from '@/components/experience/ExperienceTimeline';
 import { skills } from '@/data/skills';
 import { experience } from '@/data/experience';
@@ -41,11 +41,7 @@ export default function Home() {
       <section id="skills" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill, idx) => (
-              <SkillCard key={idx} skill={skill} />
-            ))}
-          </div>
+          <SkillsSection skills={skills} />
         </div>
       </section>
 
