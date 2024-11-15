@@ -27,7 +27,6 @@ export const SkillCard = ({ skill }: { skill: Skill }) => {
                 )}
                 <div>
                     <h3 className="font-medium text-gray-900">{skill.name}</h3>
-                    <p className="text-sm text-gray-500">{skill.category}</p>
                 </div>
             </div>
         </div>
