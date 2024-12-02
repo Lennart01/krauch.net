@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lennart Krauch - DevOps Engineer",
-  description: "DevOps Engineer specializing in Kubernetes & Cloud Infrastructure",
+  title: "Lennart Krauch - Cloud Platform / Kubernetes Engineer",
+  description: "Cloud Platform / Kubernetes Engineer specializing in Kubernetes & Cloud Infrastructure",
 };
 
 export default function RootLayout({

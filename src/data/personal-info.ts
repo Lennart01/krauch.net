@@ -3,7 +3,7 @@ import { PersonalInfo } from "./types"
 
 export const personalInfo: PersonalInfo = {
     name: "Lennart Krauch",
-    title: "DevOps Engineer & Cloud Infrastructure Specialist",
+    title: "Cloud Platform / Kubernetes Engineer",
     contact: {
         github: "Lennart01",
         email: "Lennart@krauch.net",
