@@ -3,19 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+    --background: #09090b; /* Zinc 950 */
+    --foreground: #fafafa; /* Zinc 50 */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    --card: #18181b; /* Zinc 900 */
+    --card-foreground: #fafafa;
+
+    --muted: #27272a; /* Zinc 800 */
+    --muted-foreground: #a1a1aa; /* Zinc 400 */
+
+    --accent: #27272a;
+    --accent-foreground: #fafafa;
+
+    --border: #27272a;
+
+    --primary: #2563eb; /* Blue 600 */
+    --primary-foreground: #ffffff;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
 }

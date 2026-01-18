@@ -1,15 +1,38 @@
-// src/data/experience.ts
 import { Experience } from './types';
 
 export const experience: Experience[] = [
     {
+        title: "Cloud Platform Engineer",
+        company: "inovex GmbH",
+        period: "Mar. 2025 - Present",
+        description: [
+            "Building a Database-as-a-Service (DBaaS) platform on Kubernetes supporting Postgres, SQLServer, and MongoDB",
+            "Developing internal Kubernetes Operators in Go to automate database lifecycle management and serving logic",
+            "Modularizing Terraform infrastructure and implementing monitoring for large-scale database serving across multiple worker clusters",
+            "Building additional internal tools and supporting operators"
+        ],
+        technologies: ["Go", "Kubernetes Operators", "PostgreSQL", "Terraform", "Monitoring", "DBaaS"]
+    },
+    {
+        title: "Working Student (Cloud Platform Engineering)",
+        company: "inovex GmbH",
+        period: "Dec. 2024 - Feb. 2025",
+        description: [
+            "Ensured a seamless handover of the scrumlr.io infrastructure and operations to colleagues",
+            "Maintained operational stability of the app during the transition period",
+            "Created comprehensive technical documentation"
+        ],
+        technologies: ["Kubernetes", "FluxCD", "Technical Documentation"]
+    },
+    {
         title: "Bachelor Thesis",
         company: "inovex GmbH",
-        period: "Aug. 2024 - Present",
+        period: "Aug. 2024 - Nov. 2024",
         description: [
-            "Measuring and Optimizing CO2 Emissions of a Kubernetes-based Cloud Application"
+            "Topic: Measuring and Optimizing CO2 Emissions of a Kubernetes-based Cloud Application",
+            "Analyzed the carbon footprint of cloud-native infrastructure and implemented optimization strategies"
         ],
-        technologies: ["Kubernetes", "Cloud Infrastructure", "CO2 Optimization"]
+        technologies: ["GreenIT", "Prometheus", "Optimization", "Cloud Infrastructure"]
     },
     {
         title: "Working Student IT Engineering & Operations",

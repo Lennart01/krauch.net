@@ -15,18 +15,18 @@ const icons = {
 } as const;
 
 export const SkillCard = ({ skill }: { skill: Skill }) => {
-    const Icon = icons[skill.icon as keyof typeof icons];
+    const Icon = icons[skill.icon as keyof typeof icons] || Code;
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-xl hover:border-zinc-600 hover:bg-zinc-800/80 transition-all duration-300 group">
             <div className="flex items-center gap-3">
-                {Icon && (
-                    <div className="p-2 bg-blue-50 rounded-md">
-                        <Icon className="w-5 h-5 text-blue-600" />
-                    </div>
-                )}
+                <div className="p-2.5 bg-zinc-800 rounded-lg group-hover:bg-zinc-700 transition-colors">
+                    <Icon className="w-5 h-5 text-zinc-400 group-hover:text-blue-400 transition-colors" />
+                </div>
                 <div>
-                    <h3 className="font-medium text-gray-900">{skill.name}</h3>
+                    <h3 className="font-medium text-zinc-200 group-hover:text-white transition-colors">
+                        {skill.name}
+                    </h3>
                 </div>
             </div>
         </div>

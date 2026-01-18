@@ -15,13 +15,19 @@ export const SkillsSection = ({ skills }: { skills: Skill[] }) => {
     }, [skills]);
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-16">
             {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-                <div key={category} className="space-y-4">
-                    <h3 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
+                <div key={category} className="space-y-6">
+                    {/* Updated Header Styling for better readability */}
+                    <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                        <span className="w-8 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
                         {category}
+                        <span className="text-zinc-600 text-sm font-normal ml-auto hidden sm:block">
+                            {categorySkills.length} skills
+                        </span>
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {categorySkills.map((skill, idx) => (
                             <SkillCard key={`${category}-${idx}`} skill={skill} />
                         ))}
