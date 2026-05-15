@@ -1,6 +1,16 @@
-import { Skill } from '@/data/types';
-import { SkillCard } from './SkillCard';
 import { useMemo } from 'react';
+import { Code2, Cloud, Wrench, Server, Database, Terminal } from 'lucide-react';
+import { Skill } from '@/data/types';
+import { Card, Badge } from '../shared/UI';
+
+const categoryIcons: Record<string, React.ElementType> = {
+    "Programming Languages": Code2,
+    "Cloud & Infrastructure": Cloud,
+    "DevOps Tools": Wrench,
+    "Webservers & LB": Server,
+    "Monitoring & Databases": Database,
+    "Development Tools": Terminal,
+};
 
 export const SkillsSection = ({ skills }: { skills: Skill[] }) => {
     const groupedSkills = useMemo(() => {
@@ -15,25 +25,26 @@ export const SkillsSection = ({ skills }: { skills: Skill[] }) => {
     }, [skills]);
 
     return (
-        <div className="space-y-16">
-            {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-                <div key={category} className="space-y-6">
-                    {/* Updated Header Styling for better readability */}
-                    <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                        <span className="w-8 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
-                        {category}
-                        <span className="text-zinc-600 text-sm font-normal ml-auto hidden sm:block">
-                            {categorySkills.length} skills
-                        </span>
-                    </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(groupedSkills).map(([category, categorySkills]) => {
+                const Icon = categoryIcons[category] || Terminal;
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {categorySkills.map((skill, idx) => (
-                            <SkillCard key={`${category}-${idx}`} skill={skill} />
-                        ))}
-                    </div>
-                </div>
-            ))}
+                return (
+                    <Card key={category} className="p-6 md:p-8 flex flex-col h-full">
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="p-2.5 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400">
+                                <Icon className="w-5 h-5" />
+                            </div>
+                            <h4 className="font-medium text-zinc-100 tracking-tight">{category}</h4>
+                        </div>
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                            {categorySkills.map((skill, idx) => (
+                                <Badge key={idx}>{skill.name}</Badge>
+                            ))}
+                        </div>
+                    </Card>
+                );
+            })}
         </div>
     );
 };

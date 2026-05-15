@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
     title: "Lennart Krauch - Cloud Platform / Kubernetes Engineer",
@@ -16,7 +17,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className="scroll-smooth dark">
-        <body className={`${inter.className} bg-[var(--background)] text-[var(--foreground)] min-h-screen antialiased`}>
+        <body className={`${inter.variable} ${jetbrainsMono.variable} bg-[#0A0A0B] text-zinc-300 min-h-screen antialiased`}>
         {children}
         </body>
         </html>

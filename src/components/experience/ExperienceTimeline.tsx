@@ -1,44 +1,45 @@
+import { Calendar } from 'lucide-react';
 import { Experience } from '@/data/types';
+import { Card, Badge } from '../shared/UI';
 
 export const ExperienceTimeline = ({ experiences }: { experiences: Experience[] }) => {
     return (
-        <div className="space-y-12">
+        <div className="flex flex-col relative">
+            <div className="hidden md:block absolute left-[208px] top-4 bottom-4 w-px bg-gradient-to-b from-zinc-800/20 via-zinc-800 to-zinc-800/20" />
+
             {experiences.map((exp, idx) => (
-                <div key={idx} className="relative pl-8 md:pl-12 group">
-                    {/* Timeline Line */}
-                    <div className="absolute left-0 top-2 bottom-0 w-px bg-zinc-800 group-last:h-auto" />
+                <div key={idx} className="group flex flex-col md:flex-row gap-8 items-start mb-12 last:mb-0 relative">
 
-                    {/* Timeline Dot */}
-                    <div className="absolute left-[-4px] top-2.5 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-zinc-950/50 shadow-[0_0_12px_rgba(59,130,246,0.5)]" />
+                    <div className="hidden md:block absolute left-[208px] top-8 w-2.5 h-2.5 rounded-full bg-zinc-800 border-2 border-indigo-500/50 -translate-x-[4.5px] ring-4 ring-[#0A0A0B] group-hover:border-indigo-400 group-hover:bg-indigo-500/20 transition-all duration-300" />
 
-                    <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-xl hover:border-zinc-700 transition-colors duration-300">
-                        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
-                            <div>
-                                <h3 className="font-semibold text-xl text-zinc-100">{exp.title}</h3>
-                                <p className="text-blue-400 font-medium">{exp.company}</p>
-                            </div>
-                            <span className="text-sm font-mono text-zinc-500 bg-zinc-900/50 px-3 py-1 rounded-full border border-zinc-800 whitespace-nowrap w-fit">
-                                {exp.period}
-                            </span>
+                    <div className="md:w-48 shrink-0 md:pt-6 md:text-right">
+                        <time className="inline-flex items-center gap-2 text-zinc-400 text-sm font-mono tracking-wide bg-zinc-900/50 px-3 py-1.5 rounded-full border border-zinc-800/50 md:bg-transparent md:border-none md:p-0">
+                            <Calendar className="w-4 h-4 text-indigo-500/70 hidden md:block" />
+                            {exp.period}
+                        </time>
+                    </div>
+
+                    <Card as="article" className="flex-1 w-full p-6 md:p-8">
+                        <h4 className="text-xl font-semibold text-zinc-100 mb-1 tracking-tight">
+                            {exp.title}
+                        </h4>
+                        <div className="text-indigo-400/90 font-medium mb-6 flex items-center gap-2">
+                            {exp.company}
                         </div>
-
-                        <ul className="space-y-2 text-zinc-400 mb-6">
+                        <ul className="flex flex-col gap-3.5 mb-8">
                             {exp.description.map((desc, i) => (
-                                <li key={i} className="flex items-start">
-                                    <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-zinc-600 rounded-full flex-shrink-0" />
+                                <li key={i} className="flex items-start gap-3 text-zinc-400 leading-relaxed text-sm md:text-base">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/40 mt-2.5 shrink-0" />
                                     <span>{desc}</span>
                                 </li>
                             ))}
                         </ul>
-
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/50 mt-auto">
                             {exp.technologies.map((tech, i) => (
-                                <span key={i} className="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-md text-xs font-medium">
-                                    {tech}
-                                </span>
+                                <Badge key={i}>{tech}</Badge>
                             ))}
                         </div>
-                    </div>
+                    </Card>
                 </div>
             ))}
         </div>
