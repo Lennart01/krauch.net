@@ -1,104 +1,136 @@
-import { Download, Mail, Github, Linkedin, GraduationCap } from 'lucide-react';
+import { Download, Mail } from 'lucide-react';
 import { ExperienceTimeline } from '@/components/experience/ExperienceTimeline';
 import { SkillsSection } from '@/components/skills/SkillsSection';
-import { SectionHeader, Card, Badge } from '@/components/shared/UI';
+import { Row, Section, TechList } from '@/components/shared/UI';
+import { certificates } from '@/data/certificates';
+import { education } from '@/data/education';
 import { experience } from '@/data/experience';
+import { personalInfo } from '@/data/personal-info';
 import { skills } from '@/data/skills';
+
+const { name, title, summary, contact } = personalInfo;
+const githubUrl = `https://github.com/${contact.github}`;
+const linkedinUrl = `https://linkedin.com/in/${contact.linkedin}`;
+// GitHub Pages serves the site under a base path that plain hrefs to public/ do not receive.
+const cvUrl = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/lennart-krauch-cv.pdf`;
+
+const currentRole = experience[0];
+const currentSince = currentRole.period.split(' – ')[0];
+
+const textLink = "py-2.5 underline decoration-ink-3 underline-offset-4 transition-[color,text-decoration-color] hover:text-ink hover:decoration-ink-2";
+
+// `wide` cells take the full row on phones; the rest pair up two per row.
+const contactCells = [
+    { label: "Email", value: contact.email, href: `mailto:${contact.email}`, external: false, wide: true },
+    { label: "GitHub", value: contact.github, href: githubUrl, external: true, wide: false },
+    { label: "LinkedIn", value: contact.linkedin, href: linkedinUrl, external: true, wide: false },
+];
 
 export default function Home() {
     return (
-        <main className="relative z-10 max-w-5xl mx-auto px-6 py-16 md:py-24 lg:py-32">
-            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/10 blur-[150px]" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-900/10 blur-[150px]" />
-            </div>
+        <div className="mx-auto max-w-[48rem] px-6">
+            <main>
+                <header className="animate-settle pt-20 sm:pt-32">
+                    <h1 className="text-display-sm font-semibold tracking-[-0.035em] text-ink sm:text-display">
+                        {name}
+                    </h1>
+                    <p className="mt-3 text-title text-ink">{title}</p>
+                    <p className="mt-6 max-w-[60ch] text-pretty text-body">{summary}</p>
 
-            <div className="relative z-10">
-                <header className="animate-fade-up flex flex-col md:flex-row md:items-end justify-between gap-10 mb-32">
-                    <div className="max-w-2xl">
-                        <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-br from-zinc-100 to-zinc-500">
-                            Lennart Krauch
-                        </h1>
-                        <h2 className="text-xl md:text-2xl text-indigo-400 font-medium tracking-tight mb-6">
-                            Cloud Platform & Kubernetes Engineer
-                        </h2>
-                        <p className="text-zinc-400 leading-relaxed text-lg">
-                            Building scalable cloud-native infrastructure with Kubernetes and Terraform. Specializing in platform engineering, automation, and distributed systems observability.
-                        </p>
-                    </div>
-                    <div className="flex flex-col gap-4 shrink-0 w-full md:w-auto">
-                        <a
-                            href="mailto:Lennart@krauch.net"
-                            className="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-100 text-zinc-950 rounded-lg font-semibold hover:bg-white transition-all active:scale-[0.98] shadow-lg shadow-zinc-100/10"
-                        >
-                            <Mail className="w-4 h-4" />
-                            Contact Me
-                        </a>
-                        <a
-                            href="/lennart-krauch-cv.pdf"
-                            download
-                            className="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-900/80 text-zinc-100 border border-zinc-800 rounded-lg font-medium hover:bg-zinc-800 hover:border-zinc-700 transition-all active:scale-[0.98]"
-                        >
-                            <Download className="w-4 h-4" />
-                            Download CV
-                        </a>
-                        <div className="flex justify-center gap-6 mt-2">
-                            <a href="https://github.com/Lennart01" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="text-zinc-500 hover:text-zinc-200 hover:scale-110 transition-all">
-                                <Github className="w-5 h-5" />
+                    {/* Hairline grid: cells share 1px edges because the gaps reveal the box's line colour behind them. */}
+                    <div className="mt-10 grid gap-px overflow-hidden rounded-md border border-line bg-line">
+                        <dl className="grid grid-cols-2 gap-px md:grid-cols-3">
+                            <div className="col-span-2 bg-ground px-5 py-4 md:col-span-3">
+                                <dt className="text-small">Currently</dt>
+                                <dd className="text-body text-ink">
+                                    {currentRole.title} at {currentRole.company}, since <span className="whitespace-nowrap">{currentSince}</span>
+                                </dd>
+                            </div>
+                            {contactCells.map((cell) => (
+                                <div key={cell.label} className={`min-w-0 bg-ground px-5 py-4 ${cell.wide ? "col-span-2 md:col-span-1" : ""}`}>
+                                    <dt className="text-small">{cell.label}</dt>
+                                    <dd className="text-body text-ink [overflow-wrap:anywhere]">
+                                        <a
+                                            href={cell.href}
+                                            className={textLink}
+                                            {...(cell.external ? { target: "_blank", rel: "noreferrer" } : {})}
+                                        >
+                                            {cell.value}
+                                        </a>
+                                    </dd>
+                                </div>
+                            ))}
+                        </dl>
+                        <div className="flex flex-wrap gap-3 bg-ground px-5 py-4">
+                            <a
+                                href={`mailto:${contact.email}`}
+                                className="inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-small font-medium text-ground transition-[background-color] hover:bg-white active:translate-y-px"
+                            >
+                                <Mail className="h-4 w-4" aria-hidden="true" />
+                                Email me
                             </a>
-                            <a href="https://linkedin.com/in/lennart-krauch" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-zinc-500 hover:text-zinc-200 hover:scale-110 transition-all">
-                                <Linkedin className="w-5 h-5" />
+                            <a
+                                href={cvUrl}
+                                download
+                                className="inline-flex h-11 items-center gap-2 rounded-lg border border-ink-3 px-5 text-small font-medium text-ink transition-[background-color,border-color] hover:border-ink-2 hover:bg-raised active:translate-y-px"
+                            >
+                                <Download className="h-4 w-4" aria-hidden="true" />
+                                Download CV (PDF)
                             </a>
                         </div>
                     </div>
                 </header>
 
-                <section className="mb-32 animate-fade-up delay-100">
-                    <SectionHeader title="Experience" />
+                <Section title="Experience">
                     <ExperienceTimeline experiences={experience} />
-                </section>
+                </Section>
 
-                <section className="mb-32 animate-fade-up delay-200">
-                    <SectionHeader title="Technical Expertise" />
+                <Section title="Skills">
                     <SkillsSection skills={skills} />
-                </section>
+                </Section>
 
-                <section className="mb-32 animate-fade-up delay-300">
-                    <SectionHeader title="Education" />
-                    <Card className="p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-10 items-start">
-                        <div className="p-4 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 shrink-0">
-                            <GraduationCap className="w-8 h-8 text-indigo-400" />
+                <Section title="Education & Certification">
+                    <div className="flex flex-col gap-8">
+                        {education.map((edu) => (
+                            <Row key={edu.degree} label={edu.period}>
+                                <h3 className="text-body font-medium leading-7 text-ink">{edu.degree}</h3>
+                                <p className="text-body">{edu.institution}</p>
+                                {edu.thesis && (
+                                    <div className="mt-5">
+                                        <p className="text-body text-ink">{edu.thesis.title}</p>
+                                        <p className="text-small">
+                                            Bachelor thesis, written at {edu.thesis.company}, <span className="whitespace-nowrap">{edu.thesis.period}</span>
+                                        </p>
+                                        <p className="mt-2 text-body">{edu.thesis.summary}</p>
+                                        <TechList items={edu.thesis.technologies} className="mt-3 text-ink-2" />
+                                    </div>
+                                )}
+                            </Row>
+                        ))}
+                        <div className="flex flex-col gap-3">
+                            {certificates.map((cert) => (
+                                <Row key={cert.title} label={cert.year}>
+                                    <p className="text-body">
+                                        <span className="text-ink">{cert.title}</span>, {cert.issuer}
+                                    </p>
+                                </Row>
+                            ))}
                         </div>
-                        <div className="flex-1 w-full">
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                                <h4 className="text-xl md:text-2xl font-semibold text-zinc-100 tracking-tight">B.Sc. in Computer Science</h4>
-                                <Badge>2020 — 2025</Badge>
-                            </div>
-                            <div className="text-indigo-400/90 font-medium mb-6 text-lg">
-                                Hochschule Karlsruhe – University of Applied Sciences
-                            </div>
-                            <div className="bg-zinc-950/50 p-5 rounded-xl border border-zinc-800/80">
-                                <strong className="text-zinc-300 font-medium flex items-center gap-2 mb-2 text-sm uppercase tracking-wider">
-                                    Thesis Topic
-                                </strong>
-                                <p className="text-zinc-400 leading-relaxed">
-                                    Measuring and Optimizing CO2 Emissions of a Kubernetes-based Cloud Application
-                                </p>
-                            </div>
-                        </div>
-                    </Card>
-                </section>
-
-                <footer className="pt-10 border-t border-zinc-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-zinc-500 text-sm animate-fade-up delay-300">
-                    <p className="flex items-center gap-2">
-                        © {new Date().getFullYear()} Lennart Krauch. All rights reserved.
-                    </p>
-                    <div className="flex items-center gap-8 font-mono uppercase tracking-wider text-[11px]">
-                        <a href="https://github.com/Lennart01" className="hover:text-zinc-300 hover:underline transition-all">GitHub</a>
-                        <a href="https://linkedin.com/in/lennart-krauch" className="hover:text-zinc-300 hover:underline transition-all">LinkedIn</a>
                     </div>
-                </footer>
-            </div>
-        </main>
+                </Section>
+            </main>
+
+            <footer className="mt-28 flex flex-col gap-2 border-t border-rule py-8 text-small sm:flex-row sm:items-center sm:justify-between">
+                <p>© {new Date().getFullYear()} {name}</p>
+                <nav aria-label="Contact">
+                    <ul className="flex flex-wrap gap-x-6">
+                        <li><a href={`mailto:${contact.email}`} className={textLink}>Email</a></li>
+                        <li><a href={cvUrl} download className={textLink}>CV (PDF)</a></li>
+                        <li><a href={githubUrl} target="_blank" rel="noreferrer" className={textLink}>GitHub</a></li>
+                        <li><a href={linkedinUrl} target="_blank" rel="noreferrer" className={textLink}>LinkedIn</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
     );
 }

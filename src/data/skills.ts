@@ -2,46 +2,46 @@ import { Skill } from './types';
 
 export const skills: Skill[] = [
     // Programming Languages
-    { category: "Programming Languages", name: "Go", icon: "Code" },
-    { category: "Programming Languages", name: "Python", icon: "Code" },
-    { category: "Programming Languages", name: "Bash", icon: "Terminal" },
-    { category: "Programming Languages", name: "SQL", icon: "Database" },
+    { category: "Programming Languages", name: "Go" },
+    { category: "Programming Languages", name: "Python" },
+    { category: "Programming Languages", name: "Bash" },
+    { category: "Programming Languages", name: "SQL" },
 
     // Cloud & Infrastructure
-    { category: "Cloud & Infrastructure", name: "Kubernetes", icon: "Box" },
-    { category: "Cloud & Infrastructure", name: "OpenStack", icon: "Server" },
-    { category: "Cloud & Infrastructure", name: "Azure", icon: "Cloud" },
-    { category: "Cloud & Infrastructure", name: "AWS", icon: "Cloud" },
-    { category: "Cloud & Infrastructure", name: "GCP", icon: "Cloud" },
+    { category: "Cloud & Infrastructure", name: "Kubernetes" },
+    { category: "Cloud & Infrastructure", name: "OpenStack" },
+    { category: "Cloud & Infrastructure", name: "Azure" },
+    { category: "Cloud & Infrastructure", name: "AWS" },
+    { category: "Cloud & Infrastructure", name: "GCP" },
 
     // DevOps Tools
-    { category: "DevOps Tools", name: "Terraform", icon: "Code" },
-    { category: "DevOps Tools", name: "GitLab CI/CD", icon: "Box" },
-    { category: "DevOps Tools", name: "FluxCD", icon: "MonitorDot" },
-    { category: "DevOps Tools", name: "GitHub Actions", icon: "Box" },
-    { category: "DevOps Tools", name: "Helm", icon: "Box" },
-    { category: "DevOps Tools", name: "Ansible", icon: "Terminal" },
-    { category: "DevOps Tools", name: "BentoML", icon: "Box" },
+    { category: "DevOps Tools", name: "Terraform" },
+    { category: "DevOps Tools", name: "GitLab CI/CD" },
+    { category: "DevOps Tools", name: "FluxCD" },
+    { category: "DevOps Tools", name: "GitHub Actions" },
+    { category: "DevOps Tools", name: "Helm" },
+    { category: "DevOps Tools", name: "Ansible" },
+    { category: "DevOps Tools", name: "BentoML" },
 
-    // Webservers / Load Balancers (New Category from CV)
-    { category: "Webservers & LB", name: "Nginx", icon: "Server" },
-    { category: "Webservers & LB", name: "Apache", icon: "Server" },
-    { category: "Webservers & LB", name: "Traefik", icon: "Server" },
-    { category: "Webservers & LB", name: "Caddy", icon: "Server" },
-    { category: "Webservers & LB", name: "HAProxy", icon: "Server" },
+    // Webservers & Load Balancers
+    { category: "Webservers & LB", name: "Nginx" },
+    { category: "Webservers & LB", name: "Apache" },
+    { category: "Webservers & LB", name: "Traefik" },
+    { category: "Webservers & LB", name: "Caddy" },
+    { category: "Webservers & LB", name: "HAProxy" },
 
     // Monitoring & Databases
-    { category: "Monitoring & Databases", name: "Prometheus", icon: "MonitorDot" },
-    { category: "Monitoring & Databases", name: "Grafana", icon: "MonitorDot" },
-    { category: "Monitoring & Databases", name: "Victoria Metrics", icon: "MonitorDot" },
-    { category: "Monitoring & Databases", name: "InfluxDB", icon: "Database" },
-    { category: "Monitoring & Databases", name: "PostgreSQL", icon: "Database" },
-    { category: "Monitoring & Databases", name: "Redis", icon: "Database" },
-    { category: "Monitoring & Databases", name: "SQLite", icon: "Database" },
+    { category: "Monitoring & Databases", name: "Prometheus" },
+    { category: "Monitoring & Databases", name: "Grafana" },
+    { category: "Monitoring & Databases", name: "Victoria Metrics" },
+    { category: "Monitoring & Databases", name: "InfluxDB" },
+    { category: "Monitoring & Databases", name: "PostgreSQL" },
+    { category: "Monitoring & Databases", name: "Redis" },
+    { category: "Monitoring & Databases", name: "SQLite" },
 
     // Development Tools
-    { category: "Development Tools", name: "Git", icon: "Code" },
-    { category: "Development Tools", name: "VSCode", icon: "Code" },
-    { category: "Development Tools", name: "Vim", icon: "Terminal" },
-    { category: "Development Tools", name: "Zed", icon: "Code" },
+    { category: "Development Tools", name: "Git" },
+    { category: "Development Tools", name: "VSCode" },
+    { category: "Development Tools", name: "Vim" },
+    { category: "Development Tools", name: "Zed" },
 ];

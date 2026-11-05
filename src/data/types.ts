@@ -1,8 +1,7 @@
-// src/types/index.ts
+// src/data/types.ts
 export interface Skill {
     name: string;
     category: string;
-    icon: string;
 }
 
 export interface Experience {
@@ -17,7 +16,15 @@ export interface Education {
     institution: string;
     degree: string;
     period: string;
-    thesis?: string;
+    thesis?: Thesis;
+}
+
+export interface Thesis {
+    title: string;
+    company: string;
+    period: string;
+    summary: string;
+    technologies: string[];
 }
 
 export interface Certificate {
@@ -29,6 +36,7 @@ export interface Certificate {
 export interface PersonalInfo {
     name: string;
     title: string;
+    summary: string;
     contact: {
         github: string;
         email: string;

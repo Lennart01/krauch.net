@@ -1,23 +1,31 @@
 import React from 'react';
 
-export const Badge = ({ children }: { children: React.ReactNode }) => (
-    <span className="px-3 py-1 bg-zinc-900/80 border border-zinc-800/80 rounded-full text-[11px] font-mono font-medium text-zinc-300 shadow-sm whitespace-nowrap uppercase tracking-wider">
+export const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
+    <section className="mt-24 md:mt-32">
+        <h2 className="mb-10 text-heading font-semibold tracking-[-0.02em] text-ink">{title}</h2>
         {children}
-    </span>
+    </section>
 );
 
-export const Card = ({ children, className = "", as: Component = "div" }: { children: React.ReactNode, className?: string, as?: any }) => (
-    <Component className={`group relative bg-zinc-900/30 border border-zinc-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-zinc-900/50 hover:border-zinc-700/50 hover:shadow-2xl hover:shadow-indigo-500/[0.03] ${className}`}>
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        <div className="relative z-10">
-            {children}
-        </div>
-    </Component>
+// One row of the page grid: a 176px date/label column on the left from 768px up, stacked above the content below it.
+export const Row = ({ label, children, className = "" }: { label?: React.ReactNode, children: React.ReactNode, className?: string }) => (
+    <div className={`md:grid md:grid-cols-[11rem_1fr] md:gap-x-8 ${className}`}>
+        <div className="mb-1 font-mono text-meta tabular-nums text-ink-2 md:mb-0 md:whitespace-nowrap">{label}</div>
+        <div className="min-w-0">{children}</div>
+    </div>
 );
 
-export const SectionHeader = ({ title }: { title: string }) => (
-    <h3 className="text-2xl font-semibold text-zinc-100 mb-10 flex items-center gap-3 tracking-tight">
-        <span className="w-8 h-px bg-gradient-to-r from-indigo-500 to-transparent" />
-        {title}
-    </h3>
+// Technologies as plain text: "Go · Kubernetes · Terraform". Never pills. The caller sets the ink.
+// Each name stays whole; a separator that would start a line falls into the clipped left gutter.
+export const TechList = ({ items, className = "" }: { items: string[], className?: string }) => (
+    <div className={`overflow-hidden text-small ${className}`}>
+        <ul className="-ml-5 flex flex-wrap">
+            {items.map((item) => (
+                <li key={item} className="relative max-w-full pl-5">
+                    <span aria-hidden="true" className="absolute left-0 w-5 text-center text-ink-3">·</span>
+                    {item}
+                </li>
+            ))}
+        </ul>
+    </div>
 );

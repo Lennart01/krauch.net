@@ -1,13 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { personalInfo } from "@/data/personal-info";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+
+const siteTitle = `${personalInfo.name} - ${personalInfo.title}`;
+const [firstName, ...lastNames] = personalInfo.name.split(" ");
 
 export const metadata: Metadata = {
-    title: "Lennart Krauch - Cloud Platform / Kubernetes Engineer",
-    description: "Cloud Platform / Kubernetes Engineer specializing in Kubernetes & Cloud Infrastructure",
+    title: siteTitle,
+    description: personalInfo.summary,
+    openGraph: {
+        type: "profile",
+        title: siteTitle,
+        description: personalInfo.summary,
+        locale: "en_US",
+        firstName,
+        lastName: lastNames.join(" "),
+    },
+    twitter: {
+        card: "summary",
+        title: siteTitle,
+        description: personalInfo.summary,
+    },
 };
 
 export default function RootLayout({
@@ -16,8 +33,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="scroll-smooth dark">
-        <body className={`${inter.variable} ${jetbrainsMono.variable} bg-[#0A0A0B] text-zinc-300 min-h-screen antialiased`}>
+        <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+        <body className="min-h-screen antialiased">
         {children}
         </body>
         </html>

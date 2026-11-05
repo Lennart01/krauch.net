@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# cv-website
 
-## Getting Started
+Personal CV site for Lennart Krauch. Next.js 16 (App Router), React 19, Tailwind CSS 4. Exported as a static site to GitHub Pages.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # static export check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All content lives in typed data files. Edit these, not the components:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | Holds |
+|---|---|
+| `src/data/personal-info.ts` | Name, title, summary line (also used for page metadata and link previews), contact handles |
+| `src/data/experience.ts` | Roles, newest first. Consecutive roles at one employer render as one block; the first role is shown open. |
+| `src/data/education.ts` | Degrees and the thesis |
+| `src/data/certificates.ts` | Certificates |
+| `src/data/skills.ts` | Skills, grouped by `category` |
+| `public/lennart-krauch-cv.pdf` | Downloadable CV (separate document; keep it in sync by hand) |
 
-## Learn More
+Date ranges use an en dash: `"Mar. 2025 – Present"`.
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Visual rules are in [`DESIGN.md`](DESIGN.md); product context is in [`PRODUCT.md`](PRODUCT.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`.github/workflows/nextjs.yml` builds and publishes to GitHub Pages on push. The workflow passes the Pages base path to the build as `NEXT_PUBLIC_BASE_PATH`; links to files in `public/` must prefix it (see `cvUrl` in `src/app/page.tsx`).
